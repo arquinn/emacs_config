@@ -18,6 +18,16 @@
 
 (package-initialize)
 
+(setq package-list '(flycheck whitespace fill-column-indicator
+			      protobuf-mode helm  helm-gtags
+			      color-theme-sanityinc-tomorrow))
+
+(unless package-archive-contents (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 
 (setq c-default-style "linux"  c-basic-offset 4)
 
@@ -108,15 +118,10 @@
 (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
 (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
 
-;; Lets see fi we can get a scala setup:
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
 ;; use speedbar
-(require 'sr-speedbar)
-(require 'speedbar)
-(setq sr-speedbar-right-side nil) ; put on left side
-;;; (sr-speedbar-open)
+;;; (require 'sr-speedbar)
+;;; (require 'speedbar)
+;;; (setq sr-speedbar-right-side nil) ; put on left side
 
 ;;; (provide 'init)
 ;;; init.el ends here
