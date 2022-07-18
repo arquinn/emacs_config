@@ -147,4 +147,6 @@
  '(speedbar-directory-face ((t (:inherit font-lock-string-face)))))
 
 
+;; place backup files in a less annoying place
+(setq backup-directory-alist            '((".*" . "~/.Trash")))
 
