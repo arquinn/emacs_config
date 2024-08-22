@@ -6,12 +6,13 @@
 
 ;;; Code:
 (use-package flycheck)
-;;(setq-default flycheck-disabled-checkers '(c/c++-clang))
 
-(add-hook 'c++-mode-hook
-	  (lambda () (setq flycheck-gcc-language-standard "c++11")))
+(setq-default flycheck-disabled-checkers '(c/c++-gcc))
+
+(defvar flycheck-clang-args)
+(setq flycheck-clang-args "-std=c++20")
 
 (global-flycheck-mode)
 
-(provide 'clang-fromat-config)
+(provide 'flycheck-config)
 ;;; flycheck-config.el ends here

@@ -7,8 +7,12 @@
 ;;; Code:
 (use-package org)
 
-;; Must do this so the agenda knows where to look for my files
-(setq org-agenda-files '("~/org"))
+;; setup some file paths
+(defvar org-base (getenv "ORG_HOME"))
+(defvar org-todos (concat org-base "todos.org"))
+
+(setq org-agenda-files org-base)
+
 
 ;; When a TODO is set to a done state, record a timestamp
 (setq org-log-done 'time)
@@ -34,8 +38,6 @@
 ;; When you want to change the level of an org item, use SMR
 (define-key org-mode-map (kbd "C-c C-g C-r") 'org-shiftmetaright)
 
-;; Hide the markers so you just see bold text as BOLD-TEXT and not *BOLD-TEXT*
-(setq org-hide-emphasis-markers t)
 
 ;; Wrap the lines in org mode so that things are easier to read
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -44,6 +46,16 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+
+
+;;; Capture template for a todo...?
+(setq org-capture-templates
+      '(
+        ("t" "General To-Do"
+         entry (file+headline org-todos "General Tasks")
+         "* TODO [#B] %?\n:Created: %T\n "
+         :empty-lines 0)
+      ))
 
 
 
