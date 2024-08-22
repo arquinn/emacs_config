@@ -2,10 +2,6 @@
 ;;; Code:
 ;; (setq c-default-style "linux" c-basic-offset 4)
 
-(global-linum-mode t)
-
-(setq linum-format "%4d \u2502 ")
-
 
 
 (add-to-list 'backup-directory-alist (cons "." "~/.emacs.d/backups/"))
